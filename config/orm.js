@@ -12,8 +12,8 @@ var orm = {
       },
     insertOne: function(tableInput, vals, cb) {
         var queryString = "INSERT INTO ?? SET ?" ;
-        var burger  = {burger_name: vals};
-        connection.query(queryString, [tableInput, burger], function(err, result) {
+        var newBurger  = {burger_name: vals};
+        connection.query(queryString, [tableInput, newBurger], function(err, result) {
           if (err) {
             throw err;
           }
@@ -21,10 +21,11 @@ var orm = {
           cb(result);
         });
       },
-      update: function(tableInput, cols, condition, cb) {
-        var queryString = "UPDATE ?? SET ? WHERE ?"
-    
-        connection.query(queryString, [tableInput, cols, condition], function(err, result) {
+      update: function(tableInput, col, condition, cb) {
+        var queryString = "UPDATE ?? SET devoured = ? WHERE id = ?"
+       
+      console.log("table "+ tableInput+"col "+col +" condition "+condition);
+        connection.query(queryString, [tableInput, col, condition], function(err, result) {
           if (err) {
             throw err;
           }

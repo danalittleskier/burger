@@ -1,20 +1,20 @@
 <h1>Burgers!</h1>
 
 
-  {{#each burger}}
-  <div class="row">
-    <div class="col-med-8">
-     <h3>{{burger_name}} Devoured: {{devoured}} </h3>
-     <button class="change-status" data-id="{{id}}" data-devoured="{{devoured}}">
-		{{#if devoured}}EAT ME!{{else}}DONE!{{/if}}
-	</button>
-    </div>
+{{#each burger}}
+<div class="row">
+  <div class="col-med-8">
+    <h3>{{burger_name}} Devoured: {{devoured}} </h3>
+    <button class="change-status" data-id="{{id}}" data-devoured="{{devoured}}">
+      {{#if devoured}}DONE!{{else}}EAT ME!{{/if}}
+    </button>
   </div>
-  {{/each}}
+</div>
+{{/each}}
 
 <div class="row">
   <div class="col-md-6">
-  
+
     <div class="card mb-4">
       <div class="card-header">Add a Burger to Devour</div>
       <div class="card-body">
@@ -49,6 +49,30 @@
               }
             );
           });
+          $(function () {
+            $(".change-status").on("click", function (event) {
+              var id = $(this).data("id");
+              var newDevoured = $(this).data("devoured");
 
+              var newBurgerStatus = {
+                devoured: newDevoured
+              };
+
+              // Send the PUT request.
+              $.ajax("/api/burgers/" + id, {
+                type: "PUT",
+                data: newBurgerStatus
+              }).then(
+                function () {
+                  console.log("changed burger to", newDevoured);
+                  // Reload the page to get the updated list
+                  location.reload();
+                }
+              );
+            });
+
+
+
+          });
 
         </script>
