@@ -21,10 +21,11 @@ var orm = {
           cb(result);
         });
       },
-      update: function(tableInput, col, condition, cb) {
-        var queryString = "UPDATE ?? SET devoured = ? WHERE id = ?"
-       
-        connection.query(queryString, [tableInput, col, condition], function(err, result) {
+      update: function(tableInput, condition, cb) {
+        var queryString = "UPDATE ?? SET devoured=true WHERE id = "+condition;
+       console.log("condition "+condition);
+
+        connection.query(queryString, [tableInput], function(err, result) {
           if (err) {
             throw err;
           }

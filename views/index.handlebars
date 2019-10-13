@@ -4,10 +4,12 @@
 {{#each burger}}
 <div class="row">
   <div class="col-med-8">
-    <h3>{{burger_name}} Devoured: {{devoured}} </h3>
-    <button class="change-status" data-id="{{id}}" data-devoured="{{devoured}}">
-      {{#if devoured}}DONE!{{else}}EAT ME!{{/if}}
+    <h3>{{burger_name}} </h3>
+    {{#unless devoured}}
+    <button class="change-status" data-burger-id="{{id}}" data-devoured="{{devoured}}">
+      EAT ME!
     </button>
+    {{/unless}}
   </div>
 </div>
 {{/each}}
@@ -22,7 +24,7 @@
         <form class="addburger-form">
           <div class="form-group">
             <label for="burger-input">Burger Type</label>
-            <input class="form-control" id="burger" type="text">
+            <input class="form-control" id="burger_name" type="text">
           </div>
           <button class="btn btn-primary float-right" type="submit" id="addburger">Submit Option</button>
         </form>
@@ -34,7 +36,7 @@
             event.preventDefault();
 
             var newBurger = {
-              burger_name: $("#burger").val().trim()
+              burger_name: $("#burger_name").val().trim()
             };
 
             // Send the POST request.
@@ -51,17 +53,14 @@
           });
           $(function () {
             $(".change-status").on("click", function (event) {
-              var id = $(this).data("id");
-              var newDevoured = $(this).data("devoured");
 
-              var newBurgerStatus = {
-                devoured: newDevoured
-              };
-
+            var updateBurger = {
+              burgerId: $(this).data("burger-id")
+            };
               // Send the PUT request.
-              $.ajax("/api/burgers/" + id, {
+              $.ajax("/api/burgers", {
                 type: "PUT",
-                data: newBurgerStatus
+                data: updateBurger
               }).then(
                 function () {
                   console.log("changed burger to", newDevoured);

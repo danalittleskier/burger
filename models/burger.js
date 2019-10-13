@@ -12,8 +12,8 @@ var burger = {
         cb(res);
       });
     },
-    update: function(col, condition, cb) {
-      orm.update("burgers", col, condition, function(res) {
+    update: function(condition, cb) {
+      orm.update("burgers", condition, function(res) {
         cb(res);
       });
     }
