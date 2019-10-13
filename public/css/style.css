@@ -1,0 +1,25 @@
+body {
+  font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+  font-size: 14px;
+  color: rgb(65, 196, 53);
+  
+}
+
+.jumbotron{
+  margin: 10px;
+  background-image: url("../images/beef.jpg"); 
+  height: 500px; /* You must set a specified height */
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-size: cover; 
+  color: aliceblue;
+  position: relative;
+}
+
+h2 {
+  font-family: fantasy;
+  position: absolute;
+  top: 0%;
+  right: 5%;
+  
+}
