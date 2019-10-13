@@ -10,10 +10,10 @@ var orm = {
           cb(result);
         });
       },
-    insertOne: function(tableInput, cols, vals, cb) {
-        var queryString = "INSERT INTO ?? (?, ?) VALUES (?, ?)" ;
-    
-        connection.query(queryString, [tableInput, cols, vals], function(err, result) {
+    insertOne: function(tableInput, vals, cb) {
+        var queryString = "INSERT INTO ?? SET ?" ;
+        var burger  = {burger_name: vals};
+        connection.query(queryString, [tableInput, burger], function(err, result) {
           if (err) {
             throw err;
           }
