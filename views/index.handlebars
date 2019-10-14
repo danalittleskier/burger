@@ -21,8 +21,8 @@
     {{#each burger}}
     {{#if this.devoured}}
     <h3><del>{{this.burger_name}}</del> </h3>
-  {{/if}}
-  {{/each}}
+    {{/if}}
+    {{/each}}
   </div>
 </div>
 
@@ -58,33 +58,27 @@
               data: newBurger
             }).then(
               function () {
-                console.log("added new burger");
                 // Reload the page to get the updated list
                 location.reload();
               }
             );
           });
-          $(function () {
-            $(".change-status").on("click", function (event) {
 
-              var updateBurger = {
-                burgerId: $(this).data("burger-id")
-              };
-              // Send the PUT request.
-              $.ajax("/api/burgers", {
-                type: "PUT",
-                data: updateBurger
-              }).then(
-                function () {
-                  console.log("changed burger to", newDevoured);
-                  // Reload the page to get the updated list
-                  location.reload(true);
-                }
-              );
-            });
+          $(".change-status").on("click", function (event) {
 
-
-
+            var updateBurger = {
+              burgerId: $(this).data("burger-id")
+            };
+            // Send the PUT request.
+            $.ajax("/api/burgers", {
+              type: "PUT",
+              data: updateBurger
+            }).then(
+              function () {
+                // Reload the page to get the updated list
+                location.reload();
+              }
+            );
           });
 
         </script>
