@@ -1,21 +1,34 @@
 <h1>Burgers!</h1>
 
 
-{{#each burger}}
 <div class="row">
-  <div class="col-med-8">
-    <h3>{{burger_name}} </h3>
-    {{#unless devoured}}
+  {{#each burger}}
+  {{#unless this.devoured}}
+  <div class="col-sm-6 text-center">
+    <h3>{{this.burger_name}} </h3>
+  </div>
+  <div class="col-sm-3 text-left">
     <button class="change-status" data-burger-id="{{id}}" data-devoured="{{devoured}}">
       EAT ME!
     </button>
-    {{/unless}}
+  </div>
+  {{/unless}}
+  {{/each}}
+
+
+  <div class="col-sm-3 text-right">
+    <h1>Devoured</h1>
+    {{#each burger}}
+    {{#if this.devoured}}
+    <h3><del>{{this.burger_name}}</del> </h3>
+  {{/if}}
+  {{/each}}
   </div>
 </div>
-{{/each}}
+
 
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-sm-6">
 
     <div class="card mb-4">
       <div class="card-header">Add a Burger to Devour</div>
@@ -54,9 +67,9 @@
           $(function () {
             $(".change-status").on("click", function (event) {
 
-            var updateBurger = {
-              burgerId: $(this).data("burger-id")
-            };
+              var updateBurger = {
+                burgerId: $(this).data("burger-id")
+              };
               // Send the PUT request.
               $.ajax("/api/burgers", {
                 type: "PUT",
