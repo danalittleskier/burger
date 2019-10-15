@@ -3,8 +3,8 @@
 ### Overview
 
 A restaurant app that lets users input the names of burgers they'd like to eat and lets the users devour them.
-Heroku link https://quiet-harbor-06430.herokuapp.com/
-Portfolio link https://danalittleskier.github.io/Portfolio/
+* Heroku link https://quiet-harbor-06430.herokuapp.com/
+* Portfolio link https://danalittleskier.github.io/Portfolio/
 
 ### Technologies
 
